@@ -13,17 +13,60 @@
 将下载的所有 *.csta 模型文件 放入 `seetaFace6Python/seetaface/model` 目录下
 
 ## 3. 运行示例
-本版本使用docker发布，需要安装docker后运行，默认只有实现了图片比对功能
+本版本使用docker发布，需要安装docker后运行
 ```
 docker build . -t seetaface6
 ```
-运行
+## 运行
 ```
 docker run --rm -p 8080:8080 seetaface6
 ```
-测试
+## 测试
+### 人脸检测
+```
+curl --location --request POST 'http://127.0.0.1:8080/detect' \
+--form 'image1=@"/Users/yuebo/Downloads/11.jpg"' \
+```
+响应结果
+```json
+{
+    "faces": [
+        {
+            "pos": [
+                456,
+                242,
+                349,
+                480
+            ],
+            "age": 31,
+            "gender": 1,
+            "mask": [
+                0,
+                0,
+                0,
+                0,
+                0
+            ]
+        }
+    ]
+}
+```
+* pos: 人脸在图片中的位置
+* age: 年龄
+* gender: 性别, 0：男  1：女
+* mask:  `[左眼，右眼，鼻子，左边嘴角，右边嘴角]` 的数组，0：没被遮挡  1：被遮挡
+### 人脸比对
 ```
 curl --location --request POST 'http://127.0.0.1:8080/recon' \
 --form 'image1=@"/Users/yuebo/Downloads/11.jpg"' \
 --form 'image2=@"/Users/yuebo/Downloads/22.jpg"'
 ```
+响应
+```json
+[
+    {
+        "result": 0.7792949676513672
+    }
+]
+```
+如果精度大于0.6，则可以认为是匹配。
