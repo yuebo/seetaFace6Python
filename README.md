@@ -14,11 +14,15 @@
 ## 3. 运行示例
 本版本使用docker发布，需要安装docker后运行
 ```
-docker build . -t seetaface6
+docker build . -t mooncakexyb/seetaface6
+```
+## 预编译镜像
+```
+docker push mooncakexyb/seetaface6
 ```
 ## 运行
 ```
-docker run --rm -p 8080:8080 seetaface6
+docker run --rm -p 8080:8080 mooncakexyb/seetaface6
 ```
 ## 测试
 ### 人脸检测
