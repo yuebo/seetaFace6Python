@@ -1,9 +1,10 @@
 from flask import Flask, Response, request
 import json
 from seetaface.api import *
+from flask_cors import CORS
 
 app = Flask(__name__)
-
+CORS(app)
 
 @app.route('/', methods=['get'])
 def index():

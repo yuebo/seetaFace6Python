@@ -6,6 +6,7 @@ RUN pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple flask
 ENV LD_LIBRARY_PATH=/root/seetaFace6Python/seetaface/lib/ubuntu
 ADD ./sf3.0_models/* /root/seetaFace6Python/seetaface/model/
 ENV SEETAFACE6_PYTHON_VERSION=1.3
+RUN pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple flask-cors
 ADD ./seetaFace6Python /root/seetaFace6Python
 WORKDIR /root/seetaFace6Python
 EXPOSE 8080
